@@ -1,7 +1,7 @@
 <template>
   <v-app-bar
     :elevation="2"
-    :scroll-behavior="store.drawer ? '' : 'hide'"
+    :scroll-behavior="store.drawer && store.mobile ? '' : 'hide'"
     scroll-threshold="1"
   >
     <template v-if="$vuetify.display.mobile" #prepend>
@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app";
 import { logout } from "@/services/authService";
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 

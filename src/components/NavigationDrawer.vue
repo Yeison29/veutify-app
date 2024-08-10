@@ -77,7 +77,7 @@ onMounted(async () => {
 
 onBeforeMount(() => {
   validateDispleyMobile();
-  if (!store.drawer) {
+  if (store.mobile) {
     actionDrawer();
   }
 });
@@ -86,6 +86,7 @@ watch(
   () => actionMenu.value.group,
   () => {
     actionDrawer();
+    validateDispleyMobile();
   }
 );
 </script>
