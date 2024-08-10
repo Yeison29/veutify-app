@@ -85,7 +85,6 @@ onBeforeMount(() => {
 watch(
   () => actionMenu.value.group,
   () => {
-    actionDrawer();
     validateDispleyMobile();
   }
 );
