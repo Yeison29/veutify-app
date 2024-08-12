@@ -20,12 +20,15 @@
       </div>
     </template>
   </v-data-iterator>
-  <v-pagination
-    v-model:page="currentpage"
-    :length="total"
-    rounded="circle"
-    @update:model-value="loadItems"
-  ></v-pagination>
+  <v-responsive class="align-centerfill-height mx-auto">
+    <v-pagination
+      v-model:page="currentpage"
+      :length="total"
+      rounded="circle"
+      @update:model-value="loadItems"
+      :total-visible="4"
+    ></v-pagination>
+  </v-responsive>
 </template>
 
 <script lang="ts" setup>
