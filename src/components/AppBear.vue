@@ -1,7 +1,7 @@
 <template>
   <v-app-bar
     :elevation="2"
-    :scroll-behavior="store.drawer ? '' : 'hide'"
+    :scroll-behavior="scrollbehavior()"
     scroll-threshold="1"
   >
     <template v-if="$vuetify.display.mobile" #prepend>
@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { useAppStore } from "@/stores/app";
 import { logout } from "@/services/authService";
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
@@ -32,6 +32,14 @@ const Logout = async () => {
   }
 };
 
+const scrollbehavior = () => {
+  validateDispleyMobile();
+  if (store.drawer && store.mobile){
+    return ''
+  }
+  return 'hide'
+}
+
 const store = useAppStore();
-const { actionDrawerMobile } = store;
+const { actionDrawerMobile, validateDispleyMobile } = store;
 </script>

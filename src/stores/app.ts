@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { useDisplay } from 'vuetify'
 
 export const useAppStore = defineStore('app', {
-  state: () => ({ drawer: !useDisplay().mobile.value }),
+  state: () => ({ drawer: !useDisplay().mobile.value, mobile: false }),
   actions: {
     actionDrawer () {
       this.drawer = false
@@ -12,7 +12,7 @@ export const useAppStore = defineStore('app', {
       this.drawer = !this.drawer
     },
     validateDispleyMobile () {
-      this.drawer = !useDisplay().mobile.value
+      this.mobile = useDisplay().mobile.value
     },
   },
 })
