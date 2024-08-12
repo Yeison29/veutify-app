@@ -17,6 +17,5 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     Shared: typeof import('./components/Shared.vue')['default']
     Starred: typeof import('./components/Starred.vue')['default']
-    Started: typeof import('./components/Started.vue')['default']
   }
 }
