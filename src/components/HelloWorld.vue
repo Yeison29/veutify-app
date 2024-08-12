@@ -23,6 +23,7 @@
 
 <script setup lang="ts">
 import { getProducts } from "../services/apiService";
+import { purgeCaracterImage } from "../utils/globalFunccion";
 
 interface Dessert {
   title: string;
@@ -63,6 +64,7 @@ async function loadItems({
     const response = await getProducts(page - 1, itemsPerPage);
 
     serverItems.value = [...response];
+    console.log(serverItems.value);
     totalItems.value = 194;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -82,12 +84,4 @@ const headers = reactive([
   { title: "Precio", key: "price", align: "end" },
   { title: "Descripción", key: "description", align: "start" },
 ]);
-
-const purgeCaracterImage = (image: string) => {
-  image = image
-    .replace("[", "")
-    .replace("]", "")
-    .replace(new RegExp('"', "g"), "");
-  return image;
-};
 </script>
