@@ -71,7 +71,11 @@ onMounted(async () => {
     const response = await getDataUser();
     dataUser.value = response;
   } catch (error) {
-    router.push({ name: "Login" });
+    const e = error + "";
+    const are = e.split(" ");
+    if (are[are.length - 1] === "401") {
+      router.push({ name: "Login" });
+    }
   }
 });
 

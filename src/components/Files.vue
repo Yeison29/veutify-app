@@ -34,7 +34,6 @@
 <script lang="ts" setup>
 import { getProducts } from "../services/apiService";
 import { purgeCaracterImage } from "../utils/globalFunccion";
-import component from "../vite-env";
 
 interface Dessert {
   title: string;
