@@ -1,18 +1,21 @@
 <template>
   <v-data-iterator
     v-model:items-per-page="itemsPerPage"
-    :items="serverItems"
+    :items="skeletonLoader ? skeletoitems : serverItems"
     :page="currentpage"
   >
     <template v-slot:default="{ items }">
-      <div class="conatiner-card">
-        <template v-for="(item, i) in items" :key="i">
+      <div v-if="skeletonLoader" class="conatiner-card">
+        <template v-for="i in itemsPerPage" :key="i">
           <v-skeleton-loader
-            v-if="skeletonLoader"
             class="mx-auto border"
             type="image, article"
           ></v-skeleton-loader>
-          <v-card v-if="!skeletonLoader">
+        </template>
+      </div>
+      <div v-if="!skeletonLoader" class="conatiner-card">
+        <template v-for="(item, i) in items" :key="i">
+          <v-card>
             <v-img
               :gradient="`to top right, rgba(255, 255, 255, .1), rgba(${item.raw.color}, .15)`"
               :src="purgeCaracterImage(item.raw.images[0])"
@@ -68,6 +71,38 @@ interface Dessert {
   updatedAt: string;
 }
 
+const skeleto = {
+  title: "",
+  title: "",
+  image: [""],
+  price: "",
+  description: "",
+  updatedAt: "",
+};
+
+const skeletoitems = [
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+];
+
 const currentpage = ref(1);
 const serverItems = ref<Dessert[]>([]);
 const total = ref(2);
@@ -77,9 +112,9 @@ const skeletonLoader = ref(true);
 const loadItems = async (page: number) => {
   try {
     skeletonLoader.value = true;
+    window.scrollTo(0, 0);
     const response = await getProducts(page - 1, itemsPerPage.value);
     serverItems.value = [...response];
-    window.scrollTo(0, 0);
     skeletonLoader.value = false;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -87,7 +122,6 @@ const loadItems = async (page: number) => {
 };
 
 onMounted(() => {
-  skeletonLoader.value = true;
   loadItems(1);
 });
 </script>
