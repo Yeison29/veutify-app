@@ -64,8 +64,8 @@ async function loadItems({
     const response = await getProducts(page - 1, itemsPerPage);
 
     serverItems.value = [...response];
-    console.log(serverItems.value);
     totalItems.value = 52;
+    window.scrollTo(0, 0);
   } catch (error) {
     console.error("Error fetching data:", error);
   } finally {

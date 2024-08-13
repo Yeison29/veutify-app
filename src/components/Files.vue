@@ -72,9 +72,9 @@ const loadItems = async (page: number) => {
   try {
     const response = await getProducts(page - 1, itemsPerPage.value);
     serverItems.value = [...response];
+    window.scrollTo(0, 0);
   } catch (error) {
     console.error("Error fetching data:", error);
-  } finally {
   }
 };
 

@@ -14,7 +14,6 @@ export const getDataUser = async () => {
 export const getProducts = async (page: number, itemsPerPage: number) => {
   try {
     const response = await axios.get('/products?offset=' + page * itemsPerPage + '&limit=' + itemsPerPage) // Cambia esto por tu endpoint
-    console.log(response.data)
     return response.data
   } catch (error) {
     await logout()
