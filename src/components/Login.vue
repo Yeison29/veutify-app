@@ -1,5 +1,10 @@
 <template>
   <div>
+    <v-btn
+      :icon="theme === 'dark' ? 'mdi-weather-night' : 'mdi-weather-sunny'"
+      @click="toggleTheme"
+      class="btn-theme"
+    />
     <v-img
       class="mx-auto my-6"
       max-width="228"
@@ -93,6 +98,7 @@ import { login } from "../services/authService";
 import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { email, required } from "@vuelidate/validators";
+import { setTheme, theme } from "@/plugins/vuetify";
 
 const errorMessage = ref<string | null>(null);
 const router = useRouter();
@@ -123,6 +129,11 @@ const handleLogin = async () => {
   } catch (error) {
     errorMessage.value = error.message;
   }
+};
+
+const toggleTheme = () => {
+  theme.value = theme.value === "dark" ? "light" : "dark";
+  setTheme(theme.value);
 };
 </script>
 

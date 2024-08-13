@@ -10,7 +10,10 @@
 
     <v-app-bar-title>Application Bar</v-app-bar-title>
     <template #append>
-      <v-btn icon="mdi-magnify" />
+      <v-btn
+        :icon="theme === 'dark' ? 'mdi-weather-night' : 'mdi-weather-sunny'"
+        @click="toggleTheme"
+      />
       <v-btn icon="mdi-logout" @click="Logout" />
     </template>
   </v-app-bar>
@@ -20,6 +23,7 @@
 import { useAppStore } from "@/stores/app";
 import { logout } from "@/services/authService";
 import { useRouter } from "vue-router";
+import { setTheme, theme } from "@/plugins/vuetify";
 
 const router = useRouter();
 
@@ -40,6 +44,10 @@ const scrollbehavior = () => {
   return "hide";
 };
 
+const toggleTheme = () => {
+  theme.value = theme.value === "dark" ? "light" : "dark";
+  setTheme(theme.value);
+};
 const store = useAppStore();
 const { actionDrawerMobile, validateDispleyMobile } = store;
 </script>
