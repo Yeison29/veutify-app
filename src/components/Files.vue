@@ -9,7 +9,7 @@
         <template v-for="i in itemsPerPage" :key="i">
           <v-skeleton-loader
             class="mx-auto border"
-            type="image, article"
+            type="card"
           ></v-skeleton-loader>
         </template>
       </div>
