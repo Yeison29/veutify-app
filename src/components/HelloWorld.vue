@@ -1,296 +1,87 @@
 <template>
-  <v-container>
-    <v-responsive class="align-centerfill-height mx-auto" max-width="900">
-      <v-img class="mb-4" height="150" src="@/assets/logo.png" />
-
-      <div class="text-center">
-        <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
-
-        <h1 class="text-h2 font-weight-bold">Vuetify</h1>
-      </div>
-
-      <div class="py-4" />
-
-      <v-row>
-        <v-col cols="12">
-          <v-card
-            class="py-4"
-            color="surface-variant"
-            image="https://cdn.vuetifyjs.com/docs/images/one/create/feature.png"
-            prepend-icon="mdi-rocket-launch-outline"
-            rounded="lg"
-            variant="outlined"
-          >
-            <template #image>
-              <v-img position="top right" />
-            </template>
-
-            <template #title>
-              <h2 class="text-h5 font-weight-bold">Get started</h2>
-            </template>
-
-            <template #subtitle>
-              <div class="text-subtitle-1">
-                Replace this page by removing
-                <v-kbd>{{ `<HelloWorld />` }}</v-kbd> in
-                <v-kbd>pages/index.vue</v-kbd>.
-              </div>
-            </template>
-
-            <v-overlay
-              contained
-              model-value
-              opacity=".12"
-              persistent
-              scrim="primary"
-            />
-          </v-card>
-        </v-col>
-
-        <v-col cols="6">
-          <v-card
-            append-icon="mdi-open-in-new"
-            class="py-4"
-            color="surface-variant"
-            href="https://vuetifyjs.com/"
-            prepend-icon="mdi-text-box-outline"
-            rel="noopener noreferrer"
-            rounded="lg"
-            subtitle="Learn about all things Vuetify in our documentation."
-            target="_blank"
-            title="Documentation"
-            variant="text"
-          >
-            <v-overlay
-              contained
-              model-value
-              opacity=".06"
-              persistent
-              scrim="primary"
-            />
-          </v-card>
-        </v-col>
-
-        <v-col cols="6">
-          <v-card
-            append-icon="mdi-open-in-new"
-            class="py-4"
-            color="surface-variant"
-            href="https://vuetifyjs.com/introduction/why-vuetify/#feature-guides"
-            prepend-icon="mdi-star-circle-outline"
-            rel="noopener noreferrer"
-            rounded="lg"
-            subtitle="Explore available framework Features."
-            target="_blank"
-            title="Features"
-            variant="text"
-          >
-            <v-overlay
-              contained
-              model-value
-              opacity=".06"
-              persistent
-              scrim="primary"
-            />
-          </v-card>
-        </v-col>
-
-        <v-col cols="6">
-          <v-card
-            append-icon="mdi-open-in-new"
-            class="py-4"
-            color="surface-variant"
-            href="https://vuetifyjs.com/components/all"
-            prepend-icon="mdi-widgets-outline"
-            rel="noopener noreferrer"
-            rounded="lg"
-            subtitle="Discover components in the API Explorer."
-            target="_blank"
-            title="Components"
-            variant="text"
-          >
-            <v-overlay
-              contained
-              model-value
-              opacity=".06"
-              persistent
-              scrim="primary"
-            />
-          </v-card>
-        </v-col>
-
-        <v-col cols="6">
-          <v-card
-            append-icon="mdi-open-in-new"
-            class="py-4"
-            color="surface-variant"
-            href="https://discord.vuetifyjs.com"
-            prepend-icon="mdi-account-group-outline"
-            rel="noopener noreferrer"
-            rounded="lg"
-            subtitle="Connect with Vuetify developers."
-            target="_blank"
-            title="Community"
-            variant="text"
-          >
-            <v-overlay
-              contained
-              model-value
-              opacity=".06"
-              persistent
-              scrim="primary"
-            />
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-responsive>
-    <v-responsive class="align-centerfill-height mx-auto" max-width="900">
-      <v-img class="mb-4" height="150" src="@/assets/logo.png" />
-
-      <div class="text-center">
-        <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
-
-        <h1 class="text-h2 font-weight-bold">Vuetify</h1>
-      </div>
-
-      <div class="py-4" />
-
-      <v-row>
-        <v-col cols="12">
-          <v-card
-            class="py-4"
-            color="surface-variant"
-            image="https://cdn.vuetifyjs.com/docs/images/one/create/feature.png"
-            prepend-icon="mdi-rocket-launch-outline"
-            rounded="lg"
-            variant="outlined"
-          >
-            <template #image>
-              <v-img position="top right" />
-            </template>
-
-            <template #title>
-              <h2 class="text-h5 font-weight-bold">Get started</h2>
-            </template>
-
-            <template #subtitle>
-              <div class="text-subtitle-1">
-                Replace this page by removing
-                <v-kbd>{{ `<HelloWorld />` }}</v-kbd> in
-                <v-kbd>pages/index.vue</v-kbd>.
-              </div>
-            </template>
-
-            <v-overlay
-              contained
-              model-value
-              opacity=".12"
-              persistent
-              scrim="primary"
-            />
-          </v-card>
-        </v-col>
-
-        <v-col cols="6">
-          <v-card
-            append-icon="mdi-open-in-new"
-            class="py-4"
-            color="surface-variant"
-            href="https://vuetifyjs.com/"
-            prepend-icon="mdi-text-box-outline"
-            rel="noopener noreferrer"
-            rounded="lg"
-            subtitle="Learn about all things Vuetify in our documentation."
-            target="_blank"
-            title="Documentation"
-            variant="text"
-          >
-            <v-overlay
-              contained
-              model-value
-              opacity=".06"
-              persistent
-              scrim="primary"
-            />
-          </v-card>
-        </v-col>
-
-        <v-col cols="6">
-          <v-card
-            append-icon="mdi-open-in-new"
-            class="py-4"
-            color="surface-variant"
-            href="https://vuetifyjs.com/introduction/why-vuetify/#feature-guides"
-            prepend-icon="mdi-star-circle-outline"
-            rel="noopener noreferrer"
-            rounded="lg"
-            subtitle="Explore available framework Features."
-            target="_blank"
-            title="Features"
-            variant="text"
-          >
-            <v-overlay
-              contained
-              model-value
-              opacity=".06"
-              persistent
-              scrim="primary"
-            />
-          </v-card>
-        </v-col>
-
-        <v-col cols="6">
-          <v-card
-            append-icon="mdi-open-in-new"
-            class="py-4"
-            color="surface-variant"
-            href="https://vuetifyjs.com/components/all"
-            prepend-icon="mdi-widgets-outline"
-            rel="noopener noreferrer"
-            rounded="lg"
-            subtitle="Discover components in the API Explorer."
-            target="_blank"
-            title="Components"
-            variant="text"
-          >
-            <v-overlay
-              contained
-              model-value
-              opacity=".06"
-              persistent
-              scrim="primary"
-            />
-          </v-card>
-        </v-col>
-
-        <v-col cols="6">
-          <v-card
-            append-icon="mdi-open-in-new"
-            class="py-4"
-            color="surface-variant"
-            href="https://discord.vuetifyjs.com"
-            prepend-icon="mdi-account-group-outline"
-            rel="noopener noreferrer"
-            rounded="lg"
-            subtitle="Connect with Vuetify developers."
-            target="_blank"
-            title="Community"
-            variant="text"
-          >
-            <v-overlay
-              contained
-              model-value
-              opacity=".06"
-              persistent
-              scrim="primary"
-            />
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-responsive>
-  </v-container>
+  <v-data-table-server
+    v-model:items-per-page="itemsPerPage"
+    :headers="headers"
+    item-value="name"
+    :items="serverItems"
+    :items-length="totalItems"
+    :loading="loading"
+    :search="search"
+    @update:options="loadItems"
+  >
+    <template v-slot:item.image="{ item }">
+      <v-img
+        :src="purgeCaracterImage(item.images[0])"
+        height="100"
+        width="100"
+        compant
+        class="my-2"
+      />
+    </template>
+  </v-data-table-server>
 </template>
 
 <script setup lang="ts">
-//
+import { getProducts } from "../services/apiService";
+import { purgeCaracterImage } from "../utils/globalFunccion";
+
+interface Dessert {
+  title: string;
+  image: [string];
+  price: number;
+  description: string;
+}
+
+interface SortOption {
+  key: keyof Dessert;
+  order: "asc" | "desc";
+}
+
+interface FetchParams {
+  page: number;
+  itemsPerPage: number;
+  sortBy: SortOption[];
+}
+
+const itemsPerPage = ref(10);
+const search = ref("");
+const serverItems = ref<Dessert[]>([]);
+const loading = ref(true);
+const totalItems = ref(0);
+
+async function loadItems({
+  page,
+  itemsPerPage,
+  sortBy,
+}: {
+  page: number;
+  itemsPerPage: number;
+  sortBy: SortOption[];
+}) {
+  loading.value = true;
+
+  try {
+    const response = await getProducts(page - 1, itemsPerPage);
+
+    serverItems.value = [...response];
+    console.log(serverItems.value);
+    totalItems.value = 52;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  } finally {
+    loading.value = false;
+  }
+}
+
+const headers = reactive([
+  {
+    title: "Producto",
+    align: "start",
+    sortable: false,
+    key: "title",
+  },
+  { title: "Image", key: "image", align: "center", sortable: false },
+  { title: "Precio", key: "price", align: "end" },
+  { title: "Descripción", key: "description", align: "start" },
+]);
 </script>
