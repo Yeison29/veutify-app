@@ -7,14 +7,40 @@
     <template v-slot:default="{ items }">
       <div class="conatiner-card">
         <template v-for="(item, i) in items" :key="i">
-          <v-card v-bind="item.raw">
+          <v-card>
             <v-img
               :gradient="`to top right, rgba(255, 255, 255, .1), rgba(${item.raw.color}, .15)`"
               :src="purgeCaracterImage(item.raw.images[0])"
               height="150"
               cover
             ></v-img>
-            {{ item.raw.description }}
+
+            <v-list-item :subtitle="item.raw.title" class="mb-2">
+              <template v-slot:title>
+                <strong class="text-h6 mb-2">${{ item.raw.price }} USD</strong>
+              </template>
+            </v-list-item>
+
+            <div class="d-flex justify-space-between px-4">
+              <div
+                class="d-flex align-center text-caption text-medium-emphasis me-1"
+              >
+                <v-icon icon="mdi-clock" start></v-icon>
+
+                <div class="text-truncate">
+                  {{ item.raw.updatedAt.split("T")[0] }}
+                </div>
+              </div>
+
+              <v-btn
+                class="text-none mb-2"
+                size="small"
+                text="Read"
+                border
+                flat
+              >
+              </v-btn>
+            </div>
           </v-card>
         </template>
       </div>
@@ -40,6 +66,7 @@ interface Dessert {
   image: [string];
   price: number;
   description: string;
+  updatedAt: string;
 }
 
 const currentpage = ref(1);
@@ -51,7 +78,6 @@ const loadItems = async (page: number) => {
   try {
     const response = await getProducts(page - 1, itemsPerPage.value);
     serverItems.value = [...response];
-    console.log(serverItems.value);
   } catch (error) {
     console.error("Error fetching data:", error);
   } finally {
