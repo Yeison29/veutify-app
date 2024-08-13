@@ -7,7 +7,12 @@
     <template v-slot:default="{ items }">
       <div class="conatiner-card">
         <template v-for="(item, i) in items" :key="i">
-          <v-card>
+          <v-skeleton-loader
+            v-if="skeletonLoader"
+            class="mx-auto border"
+            type="image, article"
+          ></v-skeleton-loader>
+          <v-card v-if="!skeletonLoader">
             <v-img
               :gradient="`to top right, rgba(255, 255, 255, .1), rgba(${item.raw.color}, .15)`"
               :src="purgeCaracterImage(item.raw.images[0])"
@@ -67,18 +72,22 @@ const currentpage = ref(1);
 const serverItems = ref<Dessert[]>([]);
 const total = ref(2);
 const itemsPerPage = ref(20);
+const skeletonLoader = ref(true);
 
 const loadItems = async (page: number) => {
   try {
+    skeletonLoader.value = true;
     const response = await getProducts(page - 1, itemsPerPage.value);
     serverItems.value = [...response];
     window.scrollTo(0, 0);
+    skeletonLoader.value = false;
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 };
 
 onMounted(() => {
+  skeletonLoader.value = true;
   loadItems(1);
 });
 </script>

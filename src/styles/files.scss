@@ -16,6 +16,10 @@
     padding-bottom: 5px;
 }
 
+.v-skeleton-loader{
+    width: 100%;
+}
+
 @media (max-width: 1920px) {
     .conatiner-card {
         grid-template-columns: repeat(5, 1fr);
