@@ -11,7 +11,7 @@
             <v-img
               :gradient="`to top right, rgba(255, 255, 255, .1), rgba(${item.raw.color}, .15)`"
               :src="purgeCaracterImage(item.raw.images[0])"
-              height="150"
+              height="250"
               cover
             ></v-img>
 
@@ -21,9 +21,9 @@
               </template>
             </v-list-item>
 
-            <div class="d-flex justify-space-between px-4">
+            <div class="d-flex justify-space-between px-4 container-info-card">
               <div
-                class="d-flex align-center text-caption text-medium-emphasis me-1"
+                class="d-flex align-center text-caption text-medium-emphasis me-1 mb-1"
               >
                 <v-icon icon="mdi-clock" start></v-icon>
 
@@ -32,13 +32,7 @@
                 </div>
               </div>
 
-              <v-btn
-                class="text-none mb-2"
-                size="small"
-                text="Read"
-                border
-                flat
-              >
+              <v-btn class="text-none" size="small" text="Read" border flat>
               </v-btn>
             </div>
           </v-card>
@@ -72,7 +66,7 @@ interface Dessert {
 const currentpage = ref(1);
 const serverItems = ref<Dessert[]>([]);
 const total = ref(2);
-const itemsPerPage = ref(28);
+const itemsPerPage = ref(20);
 
 const loadItems = async (page: number) => {
   try {

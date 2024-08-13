@@ -1,17 +1,41 @@
 .conatiner-card {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); // Tres columnas de igual ancho
+    grid-template-columns: repeat(6, 1fr); // Tres columnas de igual ancho
     gap: 16px; // Espacio entre las columnas y filas (opcional)
     padding: 16px; // Espaciado interno del contenedor (opcional)
 }
 
-@media (max-width: 1000px) {
+.v-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-info-card {
+    height: 100%;
+    align-items: end;
+    padding-bottom: 5px;
+}
+
+@media (max-width: 1920px) {
+    .conatiner-card {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 1280px) {
+    .conatiner-card {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+@media (max-width: 1020px) {
     .conatiner-card {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .conatiner-card {
         grid-template-columns: repeat(1, 1fr);
     }
