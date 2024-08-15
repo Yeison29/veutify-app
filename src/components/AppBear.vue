@@ -46,6 +46,7 @@ const scrollbehavior = () => {
 
 const toggleTheme = () => {
   theme.value = theme.value === "dark" ? "light" : "dark";
+  sessionStorage.setItem("isDarkMode", theme.value);
   setTheme(theme.value);
 };
 const store = useAppStore();
