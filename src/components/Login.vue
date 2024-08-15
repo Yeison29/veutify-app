@@ -1,15 +1,11 @@
 <template>
   <div>
     <v-btn
+      class="btn-theme"
       :icon="theme === 'dark' ? 'mdi-weather-night' : 'mdi-weather-sunny'"
       @click="toggleTheme"
-      class="btn-theme"
     />
-    <v-img
-      class="mx-auto my-6"
-      max-width="228"
-      src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-light.svg"
-    />
+    <v-img class="mx-auto my-6" max-width="100" src="@/assets/logo.svg" />
     <v-form @submit.prevent="handleLogin">
       <v-card
         class="mx-auto pa-12 pb-8"
@@ -89,6 +85,14 @@
         </v-card-text>
       </v-card>
     </v-form>
+    <v-snackbar v-model="snackbar.snackbar" :timeout="snackbar.timeout">
+      {{ snackbar.text }}
+      <template v-slot:actions>
+        <v-btn color="red" variant="text" @click="snackbar.snackbar = false">
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
@@ -100,9 +104,14 @@ import { useVuelidate } from "@vuelidate/core";
 import { email, required } from "@vuelidate/validators";
 import { setTheme, theme } from "@/plugins/vuetify";
 
-const errorMessage = ref<string | null>(null);
 const router = useRouter();
 const visible = ref(false);
+
+const snackbar = ref({
+  snackbar: false,
+  text: "Credenciales Invalidas",
+  timeout: 2000,
+});
 
 const initialState = {
   email: "",
@@ -127,7 +136,7 @@ const handleLogin = async () => {
     localStorage.setItem("refrestToken", response.refresh_token);
     router.push("/"); // Redirige al dashboard o a la página deseada
   } catch (error) {
-    errorMessage.value = error.message;
+    snackbar.value.snackbar = true;
   }
 };
 
