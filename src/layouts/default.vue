@@ -1,6 +1,6 @@
 <template>
   <v-responsive class="border rounded">
-    <v-main>
+    <v-main class="v-main">
       <AppBear />
       <NavigationDrawer />
       <v-container>
