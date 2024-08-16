@@ -9,6 +9,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppBear: typeof import('./components/AppBear.vue')['default']
     AppFooter: typeof import('./components/AppFooter.vue')['default']
+    Dialog: typeof import('./components/Dialog.vue')['default']
+    Dialogod: typeof import('./components/Dialogod.vue')['default']
     Files: typeof import('./components/Files.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     Login: typeof import('./components/Login.vue')['default']

@@ -1,87 +1,146 @@
 <template>
-  <v-data-table-server
+  <v-data-iterator
     v-model:items-per-page="itemsPerPage"
-    :headers="headers"
-    item-value="name"
-    :items="serverItems"
-    :items-length="totalItems"
-    :loading="loading"
-    :search="search"
-    @update:options="loadItems"
+    :items="skeletonLoader ? skeletoitems : serverItems"
+    :page="currentpage"
   >
-    <template v-slot:item.image="{ item }">
-      <v-img
-        :src="purgeCaracterImage(item.images[0])"
-        height="100"
-        width="100"
-        compant
-        class="my-2"
-      />
+    <template #default="{ items }">
+      <div v-if="skeletonLoader" class="conatiner-card">
+        <template v-for="i in itemsPerPage" :key="i">
+          <v-skeleton-loader class="mx-auto border" type="card" />
+        </template>
+      </div>
+      <div v-if="!skeletonLoader" class="conatiner-card">
+        <template v-for="(item, i) in items" :key="i">
+          <v-card>
+            <v-img
+              cover
+              :gradient="`to top right, rgba(255, 255, 255, .1), rgba(${item.raw.color}, .15)`"
+              height="250"
+              :src="purgeCaracterImage(item.raw.images[0])"
+            />
+            <v-list-item class="mb-2" :subtitle="item.raw.title">
+              <template #title>
+                <strong class="text-h6 mb-2">${{ item.raw.price }} USD</strong>
+              </template>
+            </v-list-item>
+
+            <div class="d-flex justify-space-between px-4 container-info-card">
+              <div
+                class="d-flex align-center text-caption text-medium-emphasis me-1 mb-1"
+              >
+                <v-icon icon="mdi-clock" start />
+
+                <div class="text-truncate">
+                  {{ item.raw.updatedAt.split("T")[0] }}
+                </div>
+              </div>
+              <v-btn
+                border
+                class="text-none"
+                flat
+                size="small"
+                text="Read"
+                @click="dialog(item.raw.id)"
+              />
+            </div>
+          </v-card>
+        </template>
+      </div>
     </template>
-  </v-data-table-server>
+  </v-data-iterator>
+  <v-responsive class="align-centerfill-height mx-auto">
+    <v-pagination
+      v-model:page="currentpage"
+      :length="total"
+      rounded="circle"
+      :total-visible="4"
+      @update:model-value="loadItems"
+    />
+    <Dialog v-if="store.dialog" :id="idProduct" />
+  </v-responsive>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 import { getProducts } from "../services/apiService";
 import { purgeCaracterImage } from "../utils/globalFunccion";
+import Dialog from "./Dialog.vue";
+import { useAppStore } from "@/stores/app";
 
 interface Dessert {
   title: string;
   image: [string];
   price: number;
   description: string;
+  updatedAt: string;
 }
 
-interface SortOption {
-  key: keyof Dessert;
-  order: "asc" | "desc";
-}
+const skeleto = {
+  title: "",
+  title: "",
+  image: [""],
+  price: "",
+  description: "",
+  updatedAt: "",
+};
 
-interface FetchParams {
-  page: number;
-  itemsPerPage: number;
-  sortBy: SortOption[];
-}
+const skeletoitems = [
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+  skeleto,
+];
 
-const itemsPerPage = ref(10);
-const search = ref("");
+const currentpage = ref(1);
 const serverItems = ref<Dessert[]>([]);
-const loading = ref(true);
-const totalItems = ref(0);
+const total = ref(2);
+const itemsPerPage = ref(20);
+const skeletonLoader = ref(true);
+const idProduct = ref(0);
 
-async function loadItems({
-  page,
-  itemsPerPage,
-  sortBy,
-}: {
-  page: number;
-  itemsPerPage: number;
-  sortBy: SortOption[];
-}) {
-  loading.value = true;
+const store = useAppStore();
+const { actionDialog } = store;
 
+const loadItems = async (page: number) => {
   try {
-    const response = await getProducts(page - 1, itemsPerPage);
-
-    serverItems.value = [...response];
-    totalItems.value = 52;
+    skeletonLoader.value = true;
     window.scrollTo(0, 0);
+    const response = await getProducts(page - 1, itemsPerPage.value);
+    serverItems.value = [...response];
+    skeletonLoader.value = false;
   } catch (error) {
     console.error("Error fetching data:", error);
-  } finally {
-    loading.value = false;
   }
-}
+};
 
-const headers = reactive([
-  {
-    title: "Producto",
-    align: "start",
-    sortable: false,
-    key: "title",
-  },
-  { title: "Image", key: "image", align: "center", sortable: false },
-  { title: "Precio", key: "price", align: "end" },
-  { title: "Descripción", key: "description", align: "start" },
-]);
+onMounted(() => {
+  loadItems(1);
+  if (store.dialog) {
+    actionDialog();
+  }
+});
+
+const dialog = (id: number) => {
+  console.log(id);
+  idProduct.value = id;
+  actionDialog();
+};
 </script>
+
+<style lang="scss" scoped src="../styles/files.scss"></style>

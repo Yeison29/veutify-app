@@ -85,12 +85,24 @@
         </v-card-text>
       </v-card>
     </v-form>
-    <v-snackbar v-model="snackbar.snackbar" :timeout="snackbar.timeout">
+    <v-snackbar
+      v-model="snackbar.snackbar"
+      :close-on-back="true"
+      location="top center"
+      rounded="pill"
+      stacked="true"
+      :timeout="snackbar.timeout"
+      transition="slide-y-transition"
+      variant="tonal"
+    >
       {{ snackbar.text }}
       <template v-slot:actions>
-        <v-btn color="red" variant="text" @click="snackbar.snackbar = false">
-          Cerrar
-        </v-btn>
+        <v-btn
+          color="red"
+          icon="mdi-close-circle"
+          variant="text"
+          @click="snackbar.snackbar = false"
+        />
       </template>
     </v-snackbar>
   </div>
@@ -110,7 +122,7 @@ const visible = ref(false);
 const snackbar = ref({
   snackbar: false,
   text: "Credenciales Invalidas",
-  timeout: 2000,
+  timeout: 1000,
 });
 
 const initialState = {
