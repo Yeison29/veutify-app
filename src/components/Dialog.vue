@@ -34,7 +34,6 @@
               <v-carousel
                 class="carousel"
                 cycle
-                height="400"
                 hide-delimiter-background
                 show-arrows="hover"
               >
@@ -58,12 +57,28 @@
             <v-card
               v-if="!skeleton"
               elevation="12"
-              height="100%"
-              :subtitle="'$' + serverItems?.price + ' USD'"
-              :text="serverItems?.description"
-              :title="serverItems?.title"
               variant="tonal"
-            />
+              height="100%"
+            >
+              <v-card-item>
+                <v-card-title> {{ serverItems?.title }} </v-card-title>
+
+                <v-card-subtitle>
+                  {{ "$" + serverItems?.price + " USD" }}
+                </v-card-subtitle>
+              </v-card-item>
+              <v-card-text>
+                {{ serverItems?.description }}
+              </v-card-text>
+              <v-img
+                class="align-end text-white"
+                height="200"
+                :src="serverItems?.category.image"
+                cover
+              >
+                <v-card-title>{{ serverItems?.category.name }}</v-card-title>
+              </v-img>
+            </v-card>
           </v-col>
         </v-row>
         <v-skeleton-loader
@@ -79,12 +94,19 @@
 import { useAppStore } from "@/stores/app";
 import { getProduct } from "@/services/apiService";
 
+interface category {
+  name: string;
+  image: string;
+  updatedAt: string;
+}
+
 interface Dessert {
   title: string;
   images: [string];
   price: number;
   description: string;
   updatedAt: string;
+  category: category;
 }
 
 const serverItems = ref<Dessert>();

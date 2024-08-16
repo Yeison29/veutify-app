@@ -3,6 +3,7 @@
     v-model:items-per-page="itemsPerPage"
     :items="skeletonLoader ? skeletoitems : serverItems"
     :page="currentpage"
+    max-width="1800"
   >
     <template #default="{ items }">
       <div v-if="skeletonLoader" class="conatiner-card">
@@ -145,4 +146,4 @@ const dialog = (id: number) => {
 };
 </script>
 
-<style lang="scss" scoped src="../styles/files.scss"></style>
+<style lang="scss" scoped src="../styles/dasboard.scss"></style>
