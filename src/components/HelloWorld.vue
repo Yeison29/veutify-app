@@ -69,19 +69,21 @@ import { useAppStore } from "@/stores/app";
 
 interface Dessert {
   title: string;
-  image: [string];
+  images: [string];
   price: number;
   description: string;
   updatedAt: string;
+  id: number;
 }
 
 const skeleto = {
   title: "",
   title: "",
-  image: [""],
+  images: [""],
   price: "",
   description: "",
   updatedAt: "",
+  id: 0,
 };
 
 const skeletoitems = [

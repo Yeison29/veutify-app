@@ -20,3 +20,13 @@ export const getProducts = async (page: number, itemsPerPage: number) => {
     throw new Error(`API request failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
   }
 }
+
+export const getProduct = async (id: number) => {
+  try {
+    const response = await axios.get('/products/' + id)
+    return response.data
+  } catch (error) {
+    await logout()
+    throw new Error(`API request failed: ${error instanceof Error ? error.message : 'Unknown error'}`)
+  }
+}
