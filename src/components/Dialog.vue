@@ -27,30 +27,42 @@
             <v-skeleton-loader
               v-if="skeleton"
               class="mx-auto"
-              elevation="12"
               max-width="700"
               type="table-heading, list-item-two-line, image, table-tfoot"
             />
-            <v-carousel
-              v-if="!skeleton"
-              cycle
-              height="400"
-              hide-delimiter-background
-              show-arrows="hover"
-            >
-              <v-carousel-item
-                v-for="(image, i) in serverItems?.images"
-                :key="i"
-                cover
-                :src="image"
-              />
-            </v-carousel>
+            <v-card v-if="!skeleton" elevation="12">
+              <v-carousel
+                class="carousel"
+                cycle
+                height="400"
+                hide-delimiter-background
+                show-arrows="hover"
+              >
+                <v-carousel-item
+                  v-for="(image, i) in serverItems?.images"
+                  :key="i"
+                  cover
+                  :src="image"
+                />
+              </v-carousel>
+            </v-card>
           </v-col>
           <v-col class="col" cols="12" sm="6">
             <v-skeleton-loader
+              v-if="skeleton"
               class="mx-auto"
+              elevation="12"
               max-width="700"
               type="table-heading, list-item-two-line, article, table-tfoot"
+            />
+            <v-card
+              v-if="!skeleton"
+              elevation="12"
+              height="100%"
+              :subtitle="'$' + serverItems?.price + ' USD'"
+              :text="serverItems?.description"
+              :title="serverItems?.title"
+              variant="tonal"
             />
           </v-col>
         </v-row>
