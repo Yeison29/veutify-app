@@ -10,7 +10,12 @@
         <strong class="text-h6 mb-2">Notifications</strong>
       </template>
     </v-list-item>
-
+    <v-btn
+      class="btn-close"
+      icon="mdi-close"
+      variant="text"
+      @click.stop="actionDrawerNotify()"
+    />
     <v-divider />
 
     <v-list density="compact" nav>
@@ -54,6 +59,7 @@
 import { useAppStore } from "@/stores/app";
 
 const store = useAppStore();
+const { actionDrawerNotify } = store;
 
 watch(
   () => store.drawerNotify,
@@ -68,3 +74,5 @@ watch(
   }
 );
 </script>
+
+<style lang="scss" scoped src="../styles/notify.scss"></style>
