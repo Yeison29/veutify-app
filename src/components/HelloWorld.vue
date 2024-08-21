@@ -2,8 +2,8 @@
   <v-data-iterator
     v-model:items-per-page="itemsPerPage"
     :items="skeletonLoader ? skeletoitems : serverItems"
-    :page="currentpage"
     max-width="1800"
+    :page="currentpage"
   >
     <template #default="{ items }">
       <div v-if="skeletonLoader" class="conatiner-card">

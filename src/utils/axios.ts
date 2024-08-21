@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const instance = axios.create({
   baseURL: 'https://api.escuelajs.co/api/v1', // Cambia esto por la URL base de tu API
-  timeout: 1000, // Tiempo de espera para la solicitud
+  timeout: 10000, // Tiempo de espera para la solicitud
   headers: {
     'Content-Type': 'application/json',
   },

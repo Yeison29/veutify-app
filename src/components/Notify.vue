@@ -54,4 +54,17 @@
 import { useAppStore } from "@/stores/app";
 
 const store = useAppStore();
+
+watch(
+  () => store.drawerNotify,
+  () => {
+    const html = document.querySelector("html");
+    console.log(html);
+    if (store.drawerNotify) {
+      html.style.overflow = "hidden";
+    } else {
+      html.style.overflow = "";
+    }
+  }
+);
 </script>

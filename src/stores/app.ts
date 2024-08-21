@@ -10,6 +10,7 @@ export const useAppStore = defineStore('app', {
     },
     actionDrawerMobile () {
       this.drawer = !this.drawer
+      this.drawerNotify = this.drawerNotify ? false : this.drawerNotify
     },
     validateDispleyMobile () {
       this.mobile = useDisplay().mobile.value
@@ -19,6 +20,7 @@ export const useAppStore = defineStore('app', {
     },
     actionDrawerNotify () {
       this.drawerNotify = !this.drawerNotify
+      this.drawer = this.drawer && this.mobile ? false : this.drawer
     },
   },
 })
