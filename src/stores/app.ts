@@ -14,6 +14,9 @@ export const useAppStore = defineStore('app', {
     },
     validateDispleyMobile () {
       this.mobile = useDisplay().mobile.value
+      if (!this.mobile && this.drawer) {
+        this.drawer = !this.mobile
+      }
     },
     actionDialog () {
       this.dialog = !this.dialog
