@@ -26,8 +26,8 @@
             />
           </v-toolbar-items>
         </v-toolbar>
-        <v-row class="row">
-          <v-col class="col" cols="12" md="6">
+        <div class="row">
+          <div class="col">
             <v-skeleton-loader
               v-if="skeleton"
               class="mx-auto"
@@ -45,19 +45,20 @@
                   v-for="(image, i) in serverItems?.images"
                   :key="i"
                   cover
+                  rounded
                   :src="image"
                 />
               </v-carousel>
             </v-card>
-          </v-col>
-          <v-col class="col" cols="12" md="6">
+          </div>
+          <div class="col">
             <v-skeleton-loader
               v-if="skeleton"
               class="mx-auto"
               max-width="700"
               type="table-heading, list-item-two-line, article, table-tfoot"
             />
-            <v-card v-if="!skeleton" height="100%" variant="text">
+            <v-card v-if="!skeleton" variant="text">
               <v-card-item>
                 <v-card-title> {{ serverItems?.title }} </v-card-title>
 
@@ -77,12 +78,64 @@
                 <v-card-title>{{ serverItems?.category.name }}</v-card-title>
               </v-img>
             </v-card>
-          </v-col>
-        </v-row>
+          </div>
+        </div>
+        <v-divider />
         <v-skeleton-loader
+          v-if="skeleton"
           class="mx-auto info-skeleton"
           type="list-item-two-line, article"
         />
+        <div v-if="!skeleton" class="comments">
+          <strong class="text-h6 mb-2">COMMENTS</strong>
+          <v-card class="comment" subtitle="User" title="John">
+            <template #prepend>
+              <v-avatar color="blue-darken-2">
+                <v-icon icon="mdi-comment" />
+              </v-avatar>
+            </template>
+            <template #append>
+              <v-avatar size="50">
+                <v-img
+                  alt="John"
+                  src="https://cdn.vuetifyjs.com/images/john.png"
+                />
+              </v-avatar>
+            </template>
+            <v-card-text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod.
+            </v-card-text>
+          </v-card>
+          <v-card class="comment comment-ringt" subtitle="You" title="Pepe">
+            <template #prepend>
+              <v-avatar color="teal">
+                <v-icon icon="mdi-comment" />
+              </v-avatar>
+            </template>
+            <template #append>
+              <v-avatar size="50">
+                <v-img
+                  alt="You"
+                  src="https://cdn.vuetifyjs.com/images/john.png"
+                />
+              </v-avatar>
+            </template>
+            <v-card-text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod.
+            </v-card-text>
+          </v-card>
+        </div>
+        <div class="comment-send">
+          <v-textarea
+            class="mx-2"
+            label="Comment"
+            prepend-inner-icon="mdi-comment"
+            rows="1"
+          />
+          <v-btn v-tooltip="'Send'" color="teal" icon="mdi-send" />
+        </div>
       </v-card>
     </v-dialog>
   </div>

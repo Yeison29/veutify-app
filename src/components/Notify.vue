@@ -37,7 +37,7 @@
       </v-list-item>
       <v-list-item>
         <v-banner color="pink-darken-1" icon="mdi-account-box" lines="two">
-          <template v-slot:prepend>
+          <template #prepend>
             <v-avatar />
           </template>
 
