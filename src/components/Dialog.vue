@@ -23,7 +23,7 @@
           </v-toolbar-items>
         </v-toolbar>
         <v-row class="row">
-          <v-col class="col" cols="12" sm="6">
+          <v-col class="col" cols="12" md="6">
             <v-skeleton-loader
               v-if="skeleton"
               class="mx-auto"
@@ -46,20 +46,14 @@
               </v-carousel>
             </v-card>
           </v-col>
-          <v-col class="col" cols="12" sm="6">
+          <v-col class="col" cols="12" md="6">
             <v-skeleton-loader
               v-if="skeleton"
               class="mx-auto"
-              elevation="12"
               max-width="700"
               type="table-heading, list-item-two-line, article, table-tfoot"
             />
-            <v-card
-              v-if="!skeleton"
-              elevation="12"
-              variant="tonal"
-              height="100%"
-            >
+            <v-card v-if="!skeleton" height="100%" variant="text">
               <v-card-item>
                 <v-card-title> {{ serverItems?.title }} </v-card-title>
 
@@ -72,9 +66,9 @@
               </v-card-text>
               <v-img
                 class="align-end text-white"
+                cover
                 height="200"
                 :src="serverItems?.category.image"
-                cover
               >
                 <v-card-title>{{ serverItems?.category.name }}</v-card-title>
               </v-img>

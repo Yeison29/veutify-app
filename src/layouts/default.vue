@@ -3,6 +3,7 @@
     <v-main class="v-main">
       <AppBear />
       <NavigationDrawer />
+      <Notify />
       <v-container>
         <router-view />
       </v-container>

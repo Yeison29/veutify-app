@@ -10,6 +10,12 @@
 
     <v-app-bar-title>Application Bar</v-app-bar-title>
     <template #append>
+      <v-btn class="notify" @click.stop="actionDrawerNotify()">
+        <v-badge color="error" :content="2">
+          <v-icon icon="mdi-bell" size="20" />
+        </v-badge>
+      </v-btn>
+
       <v-btn
         :icon="theme === 'dark' ? 'mdi-weather-night' : 'mdi-weather-sunny'"
         @click="toggleTheme"
@@ -50,5 +56,7 @@ const toggleTheme = () => {
   setTheme(theme.value);
 };
 const store = useAppStore();
-const { actionDrawerMobile, validateDispleyMobile } = store;
+const { actionDrawerMobile, validateDispleyMobile, actionDrawerNotify } = store;
 </script>
+
+<style lang="scss" scoped src="../styles/appBear.scss"></style>
