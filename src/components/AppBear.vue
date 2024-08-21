@@ -35,6 +35,9 @@ const router = useRouter();
 
 const Logout = async () => {
   try {
+    if (store.drawerNotify) {
+      actionDrawerNotify();
+    }
     await logout();
     router.push({ name: "Login" });
   } catch (error) {
