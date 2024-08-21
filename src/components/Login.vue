@@ -1,6 +1,9 @@
 <template>
   <div>
     <v-btn
+      v-tooltip="
+        'Change to ' + (theme === 'dark' ? 'light' : 'darck') + ' theme'
+      "
       class="btn-theme"
       :icon="theme === 'dark' ? 'mdi-weather-night' : 'mdi-weather-sunny'"
       @click="toggleTheme"
@@ -13,13 +16,13 @@
         max-width="448"
         rounded="lg"
       >
-        <div class="text-subtitle-1 text-medium-emphasis">Cuenta</div>
+        <div class="text-subtitle-1 text-medium-emphasis">Account</div>
 
         <v-text-field
           v-model="state.email"
           density="compact"
           :error-messages="v$.email.$errors.map((e: any) => e.$message)"
-          placeholder="Correo"
+          placeholder="Email"
           prepend-inner-icon="mdi-email-outline"
           variant="outlined"
           @blur="v$.email.$touch"
@@ -29,14 +32,14 @@
         <div
           class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between"
         >
-          Contraseña
-
+          Password
           <a
             class="text-caption text-decoration-none text-surface-variant"
             href="#"
             rel="noopener noreferrer"
             target="_blank"
-            >¿Olvidó su contraseña de inicio de sesión?</a
+          >
+            Forgot your login password?</a
           >
         </div>
 
@@ -45,7 +48,7 @@
           :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
           :counter="12"
           density="compact"
-          placeholder="Ingrese Contraseña"
+          placeholder="Password"
           prepend-inner-icon="mdi-lock-outline"
           :type="visible ? 'text' : 'password'"
           variant="outlined"
@@ -54,11 +57,10 @@
 
         <v-card class="mb-12" color="surface-variant" variant="tonal">
           <v-card-text class="text-medium-emphasis text-caption">
-            Advertencia: Después de 3 intentos fallidos consecutivos de inicio
-            de sesión, su cuenta estar temporalmente cerrado durante tres horas.
-            Si debe iniciar sesión ahora, puede También haga clic en "¿Olvidó su
-            contraseña de inicio de sesión?" a continuación para restablecer la
-            contraseña de inicio de sesión.
+            Warning: After 3 consecutive failed startup attempts session, your
+            account will be temporarily closed for three hours. If you need to
+            log in now, you can also click "Forgot your password." login
+            password?" below to reset the login password.
           </v-card-text>
         </v-card>
 
@@ -70,7 +72,7 @@
           type="submit"
           variant="tonal"
         >
-          Iniciar Sesión
+          Login
         </v-btn>
 
         <v-card-text class="text-center">
@@ -80,7 +82,7 @@
             rel="noopener noreferrer"
             target="_blank"
           >
-            Regístrate ahora<v-icon icon="mdi-chevron-right" />
+            Register now<v-icon icon="mdi-chevron-right" />
           </a>
         </v-card-text>
       </v-card>
@@ -121,7 +123,7 @@ const visible = ref(false);
 
 const snackbar = ref({
   snackbar: false,
-  text: "Credenciales Invalidas",
+  text: "Invalid Credential",
   timeout: 1000,
 });
 

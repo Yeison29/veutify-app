@@ -11,6 +11,7 @@
       </template>
     </v-list-item>
     <v-btn
+      v-tooltip="'Close'"
       class="btn-close"
       icon="mdi-close"
       variant="text"

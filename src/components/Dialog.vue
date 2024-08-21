@@ -19,7 +19,11 @@
           <v-spacer />
 
           <v-toolbar-items>
-            <v-btn icon="mdi-close" @click="actionDialog()" />
+            <v-btn
+              v-tooltip="'Close'"
+              icon="mdi-close"
+              @click="actionDialog()"
+            />
           </v-toolbar-items>
         </v-toolbar>
         <v-row class="row">
