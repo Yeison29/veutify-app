@@ -24,7 +24,7 @@ export const useAppStore = defineStore('app', {
       this.drawer = this.drawer && this.mobile ? false : this.drawer
     },
     closeMenu () {
-      this.drawer = false
+      this.drawer = this.mobile ? false : this.drawer
     },
     activateSnackbar (message: string, color: string) {
       this.snackbar.visible = true
