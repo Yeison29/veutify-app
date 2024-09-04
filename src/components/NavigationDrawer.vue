@@ -5,6 +5,7 @@
     :expand-on-hover="$vuetify.display.mobile ? false : true"
     :location="$vuetify.display.mobile ? 'top' : undefined"
     rail
+    touchless
   >
     <v-list>
       <v-list-item
@@ -18,32 +19,24 @@
 
     <v-list density="compact" nav>
       <v-list-item
-        v-ripple
         prepend-icon="mdi-home"
         title="Dasboard"
         :to="{ name: 'Dasboard' }"
-        value="dasboard"
       />
       <v-list-item
-        v-ripple
         prepend-icon="mdi-folder"
         title="My Files"
         :to="{ name: 'Files' }"
-        value="myfiles"
       />
       <v-list-item
-        v-ripple
         prepend-icon="mdi-account-multiple"
         title="Shared with me"
         :to="{ name: 'Shared' }"
-        value="shared"
       />
       <v-list-item
-        v-ripple
         prepend-icon="mdi-star"
         title="Starred"
         :to="{ name: 'Starred' }"
-        value="starred"
       />
     </v-list>
   </v-navigation-drawer>

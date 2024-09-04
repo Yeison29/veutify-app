@@ -15,7 +15,7 @@
     <template #append>
       <v-btn
         v-tooltip="'Notifications'"
-        class="notify"
+        class="notify v-btn--pressed"
         @click.stop="actionDrawerNotify()"
       >
         <v-badge color="error" :content="2">

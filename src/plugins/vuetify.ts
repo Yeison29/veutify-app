@@ -11,13 +11,10 @@ import 'vuetify/styles'
 // Composables
 import { createVuetify } from 'vuetify'
 
-const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-
 export const theme = ref('light')
 
-// Función para determinar el tema actual
-const detectCurrentTheme = () => {
-  const isDarkMode = darkModeMediaQuery.matches
+export const detectCurrentTheme = () => {
+  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
   const themeSession = sessionStorage.getItem('isDarkMode')
   if (themeSession) {
     return themeSession

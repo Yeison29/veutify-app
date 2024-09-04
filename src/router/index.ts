@@ -13,6 +13,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
 import Files from '@/components/Files.vue'
 import Shared from '@/components/Shared.vue'
 import Starred from '@/components/Starred.vue'
+import Product from '@/components/Product.vue'
 import authGuard from './guards'
 
 const listRoutes:any = [
@@ -40,6 +41,12 @@ const listRoutes:any = [
         path: '/starred',
         name: 'Starred',
         component: Starred,
+      },
+      {
+        path: '/product/:id',
+        name: 'Product',
+        component: Product,
+        props: true,
       },
     ],
   },

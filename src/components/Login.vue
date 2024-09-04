@@ -87,7 +87,7 @@
         </v-card-text>
       </v-card>
     </v-form>
-    <v-snackbar
+    <!--    <v-snackbar
       v-model="snackbar.snackbar"
       :close-on-back="true"
       location="top center"
@@ -106,7 +106,7 @@
           @click="snackbar.snackbar = false"
         />
       </template>
-    </v-snackbar>
+    </v-snackbar> -->
   </div>
 </template>
 
@@ -117,15 +117,12 @@ import { useRouter } from "vue-router";
 import { useVuelidate } from "@vuelidate/core";
 import { email, required } from "@vuelidate/validators";
 import { setTheme, theme } from "@/plugins/vuetify";
+import { useAppStore } from "@/stores/app";
 
 const router = useRouter();
 const visible = ref(false);
-
-const snackbar = ref({
-  snackbar: false,
-  text: "Invalid Credential",
-  timeout: 1000,
-});
+const store = useAppStore();
+const { activateSnackbar } = store;
 
 const initialState = {
   email: "",
@@ -148,9 +145,10 @@ const handleLogin = async () => {
     const response = await login(state.email, state.password);
     localStorage.setItem("authToken", response.access_token);
     localStorage.setItem("refrestToken", response.refresh_token);
+    activateSnackbar("Successfully Logged In", "success");
     router.push("/"); // Redirige al dashboard o a la página deseada
   } catch (error) {
-    snackbar.value.snackbar = true;
+    activateSnackbar("Invalid Credential", "error");
   }
 };
 

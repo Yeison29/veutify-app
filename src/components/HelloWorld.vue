@@ -42,7 +42,7 @@
                 flat
                 size="small"
                 text="Read"
-                @click="dialog(item.raw.id)"
+                :to="{ name: 'Product', params: { id: item.raw.id } }"
               />
             </div>
           </v-card>
@@ -58,14 +58,12 @@
       :total-visible="4"
       @update:model-value="loadItems"
     />
-    <Dialog v-if="store.dialog" :id="idProduct" />
   </v-responsive>
 </template>
 
 <script lang="ts" setup>
 import { getProducts } from "../services/apiService";
 import { purgeCaracterImage } from "../utils/globalFunccion";
-import Dialog from "./Dialog.vue";
 import { useAppStore } from "@/stores/app";
 
 interface Dessert {
@@ -115,7 +113,6 @@ const serverItems = ref<Dessert[]>([]);
 const total = ref(2);
 const itemsPerPage = ref(20);
 const skeletonLoader = ref(true);
-const idProduct = ref(0);
 
 const store = useAppStore();
 const { actionDialog } = store;
@@ -138,12 +135,6 @@ onMounted(() => {
     actionDialog();
   }
 });
-
-const dialog = (id: number) => {
-  console.log(id);
-  idProduct.value = id;
-  actionDialog();
-};
 </script>
 
 <style lang="scss" scoped src="../styles/dasboard.scss"></style>

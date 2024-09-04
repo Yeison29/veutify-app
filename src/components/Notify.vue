@@ -60,13 +60,14 @@
 import { useAppStore } from "@/stores/app";
 
 const store = useAppStore();
-const { actionDrawerNotify } = store;
+const { actionDrawerNotify, closeMenu } = store;
 
 watch(
   () => store.drawerNotify,
   () => {
     const html = document.querySelector("html");
     console.log(html);
+    closeMenu();
     if (store.drawerNotify) {
       html.style.overflow = "hidden";
     } else {
